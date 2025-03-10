@@ -39,14 +39,15 @@ export class News extends Component {
   // https://newsapi.org/v2/top-headlines?country=in&apiKey=4532b3f5dec24ce2975337035a09c78f&PageSize=${this.props.pageSize}
   updateNews = async () => {
     this.props.setProgress(10)
-    let url = (`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&PageSize=${this.props.pageSize}`);
-   
+    let url = (`https://newsapi.org/v2/top-headlines?category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&PageSize=${this.props.pageSize}`);
+    // let url="https://newsdata.io/api/1/latest?apikey=pub_72511f5b5f7c111672884b2a91e46149b9ca2&country=in"
     this.setState({ loading: true })
     let data = await fetch(url);
     this.props.setProgress(50)
     let parsedData = await data.json();
     this.props.setProgress(75)
     this.setState({ loading: false })
+    console.log("hello world")
     console.log(parsedData.articles);
     this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults });
     this.setState({ totalPages: Math.ceil(this.state.totalResults / this.props.pageSize) });
@@ -87,7 +88,8 @@ export class News extends Component {
   fetchMoreData = async() => {
     setTimeout(async() => {
       this.setState({page:this.state.page+1});
-      let url = (`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&PageSize=${this.props.pageSize}`);
+      // country=${this.props.country}&
+      let url = (`https://newsapi.org/v2/top-headlines?category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&PageSize=${this.props.pageSize}`);
       
       let data = await fetch(url);
       let parsedData = await data.json();
@@ -151,7 +153,7 @@ export class News extends Component {
               return <div className="col-md-4" key={element.url}>
 
                 {/* {console.log(element.description.slice(0,8))} */}
-                <NewsItem title={element.title.slice(0, 45)} description={element.description != null ? element.description.slice(0, 88) : element.description} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} time={element.publishedAt} source={element.source.name} />
+                <NewsItem title={element.title.slice(0, 45)} description={element.description != null ? element.description.slice(0, 88) : element.description}  description2={element.description != null ? element.description : element.description} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} time={element.publishedAt} source={element.source.name} />
 
               </div>
             })}

@@ -31,7 +31,7 @@ export default class App extends Component {
       />
        
        <Routes>
-          <Route exact path="/" element={<News apiKey={this.apiKey} setProgress={this.setProgress}   key="general" pageSize={this.pageSize} country="in" category="general"/>}/>
+          <Route exact path="/" element={<News apiKey={this.apiKey} setProgress={this.setProgress}   key="general" pageSize={this.pageSize} country="us" category="general"/>}/>
           <Route exact path="/business" element={<News apiKey={this.apiKey} setProgress={this.setProgress}  key="business"  pageSize={this.pageSize} country="in" category="business"/>}/>
           <Route exact path="/entertainment" element={<News apiKey={this.apiKey} setProgress={this.setProgress}   key="entertainment" pageSize={this.pageSize} country="in" category="entertainment"/>}/>
           <Route exact path="/general" element={<News apiKey={this.apiKey} setProgress={this.setProgress}  key="general"  pageSize={this.pageSize} country="in" category="general"/>}/>
